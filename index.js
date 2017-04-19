@@ -33,6 +33,41 @@ app.post("/book", function(req, res) {
     }));
 });
 
+app.post("/search",function(req,res){
+console.log(req.body.bookName)
+var formValue =req.body.bookName
+    // res.send(books.map(function(book){
+    //     return{
+    //         id: book._id,
+    //         name: book.name,
+    //         author: book.author,
+    //         picture: book.picture,
+    //         tags: book.tags
+    //     }
+    // }))
+
+
+
+   var newBooksArray =  books.filter(function(book){
+        return  book.name==formValue
+    })
+    
+    if(formValue === ''){
+    res.send(
+      books.map(function(book){
+        return{
+            id: book._id,
+            name: book.name,
+            author: book.author,
+            picture: book.picture,
+            tags: book.tags
+        }
+        console.log(send)
+    })
+    
+    )}else{res.send(newBooksArray)}
+})
+
 app.listen(3000, function() {
     console.log("Server is running on http://localhost:3000");
 });
